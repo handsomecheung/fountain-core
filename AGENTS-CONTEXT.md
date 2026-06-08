@@ -1,4 +1,4 @@
-# Project: `fountain`
+# Project: `fountain-core`
 
 ## For the AI Agents
 

@@ -2,7 +2,7 @@ use anyhow::Result;
 use clap::Parser;
 use std::path::PathBuf;
 
-use fountain::{decode_from_gif, decode_from_images, qr::QR_FILE_EXTENSION};
+use fountain_core::{decode_from_gif, decode_from_images, qr::QR_FILE_EXTENSION};
 
 #[derive(Parser)]
 #[command(name = "fountain-decode")]

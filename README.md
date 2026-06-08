@@ -1,6 +1,6 @@
-# Fountain ⛲
+# Fountain Core ⛲
 
-Fountain is a high-resilience, air-gapped data transmission tool that converts any file into a stream of QR codes. By leveraging **Fountain Codes (specifically RaptorQ)**, it ensures reliable file transfer via screens, cameras, or paper, even when frames are lost or captured out of order.
+Fountain Core is a high-resilience, air-gapped data transmission tool that converts any file into a stream of QR codes. By leveraging **Fountain Codes (specifically RaptorQ)**, it ensures reliable file transfer via screens, cameras, or paper, even when frames are lost or captured out of order.
 
 ## 🌟 The Magic of Fountain Codes in QR Transmission
 

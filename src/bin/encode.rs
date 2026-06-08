@@ -2,7 +2,7 @@ use anyhow::Result;
 use clap::Parser;
 use std::path::{Path, PathBuf};
 
-use fountain::{
+use fountain_core::{
     display_qr_carousel, display_qr_once, encode_file_for_terminal, encode_file_to_gif,
     encode_file_to_images, DEFAULT_PAYLOAD_SIZE, MAX_PAYLOAD_SIZE,
 };

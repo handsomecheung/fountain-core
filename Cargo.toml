@@ -1,5 +1,5 @@
 [package]
-name = "fountain"
+name = "fountain-core"
 version = "0.1.4"
 edition = "2021"
 description = "Convert any file to QR codes and back"

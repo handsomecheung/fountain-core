@@ -107,7 +107,7 @@ jobs:
       - name: Build WASM
         run: |
           cargo build --release --target wasm32-unknown-unknown --no-default-features --features wasm
-          wasm-bindgen target/wasm32-unknown-unknown/release/fountain.wasm --out-dir www/pkg --target web
+          wasm-bindgen target/wasm32-unknown-unknown/release/fountain_core.wasm --out-dir www/pkg --target web
 
       - name: Package WASM
         run: |

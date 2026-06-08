@@ -17,7 +17,7 @@ fn test_encode_decode_roundtrip() {
     fs::write(&source_file_path, original_content).expect("Failed to write source file");
 
     println!("Encoding...");
-    let encode_result = fountain::encode_file_to_images(&source_file_path, &qr_output_dir, None, 4)
+    let encode_result = fountain_core::encode_file_to_images(&source_file_path, &qr_output_dir, None, 4)
         .expect("Encoding failed");
 
     assert!(encode_result.num_chunks > 0);
@@ -27,7 +27,7 @@ fn test_encode_decode_roundtrip() {
     assert_eq!(count, encode_result.num_chunks);
 
     println!("Decoding...");
-    let decode_result = fountain::decode_from_images(&qr_output_dir, Some(&decoded_output_path))
+    let decode_result = fountain_core::decode_from_images(&qr_output_dir, Some(&decoded_output_path))
         .expect("Decoding failed");
 
     // In RaptorQ, decode_result.num_chunks is the number of chunks used for decoding
@@ -58,7 +58,7 @@ fn test_encode_images_size_consistency() {
 
     // Use a small chunk size to ensure we get many chunks
     let encode_result =
-        fountain::encode_file_to_images(&source_file_path, &qr_output_dir, Some(100), 4)
+        fountain_core::encode_file_to_images(&source_file_path, &qr_output_dir, Some(100), 4)
             .expect("Encoding failed");
 
     assert!(
@@ -103,7 +103,7 @@ fn test_encode_gif_size_consistency() {
     let data: Vec<u8> = (0..20000).map(|i| (i % 255) as u8).collect();
     fs::write(&source_file_path, &data).expect("Failed to write source file");
 
-    fountain::encode_file_to_gif(&source_file_path, &output_gif_path, Some(100), 100, 4)
+    fountain_core::encode_file_to_gif(&source_file_path, &output_gif_path, Some(100), 100, 4)
         .expect("GIF encoding failed");
 
     let file = File::open(&output_gif_path).expect("Failed to open generated GIF");
@@ -148,13 +148,13 @@ fn test_encode_decode_gif_roundtrip() {
 
     println!("Encoding to GIF...");
     let encode_result =
-        fountain::encode_file_to_gif(&source_file_path, &output_gif_path, None, 100, 4)
+        fountain_core::encode_file_to_gif(&source_file_path, &output_gif_path, None, 100, 4)
             .expect("GIF encoding failed");
 
     assert!(encode_result.num_chunks > 0);
 
     println!("Decoding from GIF...");
-    let decode_result = fountain::decode_from_gif(&output_gif_path, Some(&decoded_output_path))
+    let decode_result = fountain_core::decode_from_gif(&output_gif_path, Some(&decoded_output_path))
         .expect("GIF decoding failed");
 
     assert!(decode_result.num_chunks > 0);
@@ -179,7 +179,7 @@ fn test_terminal_generation() {
     println!("Encoding for terminal...");
     // Use a small chunk size to force multiple packets
     let terminal_data =
-        fountain::encode_file_for_terminal(&source_file_path, Some(100)).expect("Encoding failed");
+        fountain_core::encode_file_for_terminal(&source_file_path, Some(100)).expect("Encoding failed");
 
     assert!(terminal_data.total > 0);
     assert!(!terminal_data.qr_strings.is_empty());
@@ -211,7 +211,7 @@ fn test_encoding_efficiency() {
 
     // 2. Perform end-to-end encoding
     // Use fixed chunk size 500 and pixel scale 4 for consistent comparison
-    let result = fountain::encode_file_to_gif(
+    let result = fountain_core::encode_file_to_gif(
         &input_path,
         &output_gif_path,
         Some(500),
